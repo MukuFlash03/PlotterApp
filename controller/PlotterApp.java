@@ -29,9 +29,9 @@ public class PlotterApp extends JFrame implements ActionListener {
         source.addObserver(barPlot);
     
         setLayout(new GridLayout(4,1));
-        add(simplePlot);
-        add(squarePlot);
         add(barPlot);
+        add(squarePlot);
+        add(simplePlot);
         add(run);
         run.addActionListener(this);
 

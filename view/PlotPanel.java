@@ -22,7 +22,7 @@ public class PlotPanel extends JPanel implements Observer {
 
     public PlotPanel(String caption) {
         // Initialize JPanel
-        this.setBackground(Color.lightGray);
+        this.setBackground(Color.white);
         this.setBorder(new LineBorder(Color.DARK_GRAY, 1, true));
         captionLabel.setText(caption);
         add(captionLabel);
@@ -40,6 +40,7 @@ public class PlotPanel extends JPanel implements Observer {
     
     @Override
     public void paintComponent(Graphics g) {
+        super.paintComponent(g);
         pointPlot(g);
     }
     

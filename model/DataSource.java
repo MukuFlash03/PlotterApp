@@ -40,7 +40,7 @@ public class DataSource extends Observable {
     }
 
     public void generateCoordinates() {
-        coordinates = new ArrayList<Coordinate>();
+        this.coordinates = new ArrayList<Coordinate>();
         double x,y;
         int count = 0;
 
@@ -59,12 +59,12 @@ public class DataSource extends Observable {
             if (flag)
                 i--;
             else
-                coordinates.add(xy);
+                this.coordinates.add(xy);
 
             if (count > numberCoordinates + 5) 
                 break;
         }
-        coordinates = NormalizeCoordinates.scaleCoordinates(coordinates);
+        this.coordinates = NormalizeCoordinates.scaleCoordinates(this.coordinates);
         System.out.println("Size = " + this.coordinates.size());
 
     }
