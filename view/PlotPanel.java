@@ -3,6 +3,7 @@ package view;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
+import model.AverageEvaluator;
 import model.Coordinate;
 import model.DataSource;
 
@@ -15,13 +16,17 @@ import java.util.Observable;
 import java.util.ArrayList;
 
 public class PlotPanel extends JPanel implements Observer {
+    
+    private PlotComponent component;
+    
     JLabel label = new JLabel();
     JLabel captionLabel = new JLabel();
 
     private ArrayList<Coordinate> coordinates;
+    private double averageLineValue;
 
-    public PlotPanel(String caption) {
-        // Initialize JPanel
+    public PlotPanel(String caption, PlotComponent component) {
+        this.component = component;
         this.setBackground(Color.white);
         this.setBorder(new LineBorder(Color.DARK_GRAY, 1, true));
         captionLabel.setText(caption);
@@ -31,9 +36,12 @@ public class PlotPanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        // String data = ((DataSource) o).getData();
-        // label.setText(data);
         this.coordinates = ((DataSource) o).getCoordinates();
+        
+        // Singleton objects
+        AverageEvaluator average = AverageEvaluator.getInstance();
+        average.calculate(coordinates);
+        this.averageLineValue = average.getAverage();
         repaint();
     }
     
@@ -41,24 +49,12 @@ public class PlotPanel extends JPanel implements Observer {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        pointPlot(g);
+        plotAverageLine(g);
+        this.component.operation(g, this.coordinates);
     }
-    
 
-    private void pointPlot(Graphics g) {
-
-        if (this.coordinates != null) {
-            // System.out.println("I am here");
-            for (Coordinate xy : this.coordinates) {
-                g.fillOval((int) xy.getX(), (int) xy.getY(), 5, 5);
-                g.setColor(Color.RED);
-            }
-        }
-        /*
-        else {
-            g.fillOval((int)333.0, (int)324.0,  5, 5);
-            g.setColor(Color.RED);
-        }
-        */
+    private void plotAverageLine(Graphics g) {
+        g.setColor(Color.MAGENTA);
+        g.drawLine(0, (int) this.averageLineValue, 1920, (int) this.averageLineValue);
     }
 }

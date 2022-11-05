@@ -4,7 +4,6 @@ import java.awt.event.*;
 import java.awt.GridLayout;
 import javax.swing.*;
 
-import model.AverageEvaluator;
 import model.DataSource;
 import view.Bar;
 import view.PlotPanel;
@@ -13,20 +12,36 @@ import view.Square;
 
 public class PlotterApp extends JFrame implements ActionListener {
 
+    // Observable objects
     DataSource source;
+    
+    // Decorator objects
+    Point point;
+    Square square;
+    Bar bar;
 
     public PlotterApp() {
         JButton run = new JButton("Generate Plots");
+
+        this.point = new Point();
+        this.square = new Square();
+        this.bar = new Bar();
+
+        this.square.setComponent(this.point);
+        this.bar.setComponent(this.square);
         
         // Observer objects
-        PlotPanel simplePlot = new PlotPanel("Simple Plot");
-        PlotPanel squarePlot = new PlotPanel("Square Plot");
-        PlotPanel barPlot = new PlotPanel("Bar Plot");
+        PlotPanel simplePlot = new PlotPanel("Simple Plot", point);
+        PlotPanel squarePlot = new PlotPanel("Square Plot", square);
+        PlotPanel barPlot = new PlotPanel("Bar Plot", bar);
 
-        source = new DataSource();
-        source.addObserver(simplePlot);
-        source.addObserver(squarePlot);
-        source.addObserver(barPlot);
+        this.source = new DataSource();
+        this.source.addObserver(simplePlot);
+        this.source.addObserver(squarePlot);
+        this.source.addObserver(barPlot);
+
+        System.out.println("Height: " + simplePlot.getSize().getHeight());
+        System.out.println("Width: " + simplePlot.getSize().getHeight());
     
         setLayout(new GridLayout(4,1));
         add(barPlot);
@@ -43,28 +58,13 @@ public class PlotterApp extends JFrame implements ActionListener {
         JFrame window = new PlotterApp();
         window.setSize(500,500);
         window.setVisible(true);
-
-        
-        // Decorator objects
-        Point point = new Point();
-        Square square = new Square();
-        Bar bar = new Bar();
-
-        square.setComponent(point);
-        bar.setComponent(square);
-        bar.operation();
-
-
-        // Singleton objects
-        AverageEvaluator average = AverageEvaluator.getInstance();
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        source.generateCoordinates();
-        // source.setData("Data");
-        source.setData(source.getCoordinates());
-        source.printPoints();
+        this.source.generateCoordinates();
+        this.source.setCoordinates(this.source.getCoordinates());
+        this.source.printPoints();
     }
 }
