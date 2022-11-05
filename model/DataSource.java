@@ -39,7 +39,7 @@ public class DataSource extends Observable implements Comparator<Coordinate> {
         double y;
         int count = 0;
 
-        for (int i = 1; i <= numberCoordinates; i++) {
+        for (int i = 1; i <= this.numberCoordinates; i++) {
             count++;
             
             // x = Math.round(ThreadLocalRandom.current().nextInt(minLimit,maxLimit) * 100) / 100.0;
@@ -55,12 +55,11 @@ public class DataSource extends Observable implements Comparator<Coordinate> {
             else
                 this.coordinates.add(xy);
 
-            if (count > numberCoordinates + 5) 
+            if (count > this.numberCoordinates + 5) 
                 break;
         }
         this.coordinates = NormalizeCoordinates.scaleCoordinates(this.coordinates);
-        Collections.sort(this.coordinates, new DataSource());
-
+        // Collections.sort(this.coordinates, new DataSource());
     }
 
     private boolean checkPointExists(Coordinate xy) {

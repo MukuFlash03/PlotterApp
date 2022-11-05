@@ -20,6 +20,8 @@ public class PlotterApp extends JFrame implements ActionListener {
     Square square;
     Bar bar;
 
+    Timer sleepTimer;
+
     public PlotterApp() {
         JButton run = new JButton("Generate Plots");
 
@@ -54,17 +56,25 @@ public class PlotterApp extends JFrame implements ActionListener {
     }
     
     public static void main(String[] args) {
-
         JFrame window = new PlotterApp();
         window.setSize(500,500);
         window.setVisible(true);
     }
 
+    public void setTimer() {
+        sleepTimer = new Timer(5000, this);
+        sleepTimer.start(); 
+        sleepTimer.setRepeats(true);
+        sleepTimer.setCoalesce(true);
+        sleepTimer.setInitialDelay(0); 
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        setTimer();
         this.source.generateCoordinates();
         this.source.setCoordinates(this.source.getCoordinates());
-        this.source.printPoints();
+        this.source.printPoints();    
     }
 }
