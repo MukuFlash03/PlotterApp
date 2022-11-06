@@ -14,23 +14,17 @@ public class PlotterApp extends JFrame implements ActionListener {
 
     // Observable objects
     DataSource source;
-    
-    // Decorator objects
-    Point point;
-    Square square;
-    Bar bar;
-
-    Timer sleepTimer;
 
     public PlotterApp() {
         JButton run = new JButton("Generate Plots");
 
-        this.point = new Point();
-        this.square = new Square();
-        this.bar = new Bar();
+        // Decorator objects
+        Point point = new Point();
+        Square square = new Square();
+        Bar bar = new Bar();
 
-        this.square.setComponent(this.point);
-        this.bar.setComponent(this.square);
+        square.setComponent(point);
+        bar.setComponent(square);
         
         // Observer objects
         PlotPanel simplePlot = new PlotPanel("Simple Plot", point);
@@ -62,7 +56,7 @@ public class PlotterApp extends JFrame implements ActionListener {
     }
 
     public void setTimer() {
-        sleepTimer = new Timer(5000, this);
+        Timer sleepTimer = new Timer(2500, this);
         sleepTimer.start(); 
         sleepTimer.setRepeats(true);
         sleepTimer.setCoalesce(true);
