@@ -6,11 +6,13 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * Description
- * 
+ * This class is one of the concrete class for Plot Decorator. It adds bar to the
+ * already plotted square points in the GUI.
+ *
  * @author Shrinkhala Kayastha
+ * @author Mukul Mahadik
  * @version 1.0
- */
+* */
 public class Bar extends PlotDecorator {
     // private static final int BORDER_GAP = 30;
     // private final int width = 700;
@@ -19,8 +21,9 @@ public class Bar extends PlotDecorator {
     private static final int GRAPH_POINT_WIDTH = 8;
 
     /**
-     * 
-     * @param
+     * Overrides the method operation in parent class. This function draws the bar for the already plotted points.
+     * @param g object for class Graphics
+     * @param coordinates arraylist with coordinates of the plotted points
      */
     @Override
     public void operation(Graphics g, ArrayList<Coordinate> coordinates) {

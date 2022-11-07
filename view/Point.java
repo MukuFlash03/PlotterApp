@@ -6,11 +6,13 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * Description
- * 
+ * This class plots the randomly generated points in the GUI and connects them with the line
+ * forming line graph for the points.
+ *
  * @author Shrinkhala Kayastha
+ * @author Mukul Mahadik
  * @version 1.0
- */
+ * */
 public class Point implements PlotComponent {
     private static final Color GRAPH_COLOR = Color.black;
     private static final Color GRAPH_POINT_COLOR = Color.blue;
@@ -18,8 +20,10 @@ public class Point implements PlotComponent {
     private static final int GRAPH_POINT_WIDTH = 4;
 
     /**
-     * 
-     * @param
+     * Overrides the method operation in parent class. This function draws the plotted points
+     * and connects them with a line graph.
+     * @param g object for class Graphics
+     * @param coordinates arraylist with coordinates of the plotted points
      */
     @Override
     public void operation(Graphics g, ArrayList<Coordinate> coordinates) {

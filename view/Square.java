@@ -6,17 +6,20 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * Description
- * 
+ * This class is one of the concrete class for Plot Decorator. It plots the randomly generated
+ * points in square shape in the GUI.
+ *
  * @author Shrinkhala Kayastha
+ * @author Mukul Mahadik
  * @version 1.0
- */
+ * */
 public class Square extends PlotDecorator {
     private static final int GRAPH_SQUARE_WIDTH = 8;
 
     /**
-     * 
-     * @param
+     * Overrides the method operation in parent class. This function draws the plotted points in square shape.
+     * @param g object for class Graphics
+     * @param coordinates arraylist with coordinates of the plotted points
      */
     @Override
     public void operation(Graphics g, ArrayList<Coordinate> coordinates) {
