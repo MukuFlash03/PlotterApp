@@ -5,12 +5,23 @@ import model.Coordinate;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * Description
+ * 
+ * @author Shrinkhala Kayastha
+ * @version 1.0
+ */
 public class Bar extends PlotDecorator {
     // private static final int BORDER_GAP = 30;
     // private final int width = 700;
     // private final int height = 250;
     private static final Stroke GRAPH_BAR_STROKE = new BasicStroke(6f);
     private static final int GRAPH_POINT_WIDTH = 8;
+
+    /**
+     * 
+     * @param
+     */
     @Override
     public void operation(Graphics g, ArrayList<Coordinate> coordinates) {
         super.operation(g, coordinates);

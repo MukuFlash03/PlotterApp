@@ -5,8 +5,19 @@ import model.Coordinate;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * Description
+ * 
+ * @author Shrinkhala Kayastha
+ * @version 1.0
+ */
 public class Square extends PlotDecorator {
     private static final int GRAPH_SQUARE_WIDTH = 8;
+
+    /**
+     * 
+     * @param
+     */
     @Override
     public void operation(Graphics g, ArrayList<Coordinate> coordinates) {
         super.operation(g, coordinates);

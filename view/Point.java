@@ -5,11 +5,22 @@ import model.Coordinate;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * Description
+ * 
+ * @author Shrinkhala Kayastha
+ * @version 1.0
+ */
 public class Point implements PlotComponent {
     private static final Color GRAPH_COLOR = Color.black;
     private static final Color GRAPH_POINT_COLOR = Color.blue;
     private static final Stroke GRAPH_STROKE = new BasicStroke(3f);
     private static final int GRAPH_POINT_WIDTH = 4;
+
+    /**
+     * 
+     * @param
+     */
     @Override
     public void operation(Graphics g, ArrayList<Coordinate> coordinates) {
         if (coordinates != null) {

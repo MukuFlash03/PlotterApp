@@ -3,7 +3,7 @@ package model;
  * This class models a Coordinate class based on inbuilt Point class.
  * It stores X and Y coordinate values of Integer type.
  * 
- * @author Shrinkhala Kayastha
+ * @author Mukul Mahadik
  * @version 1.0
  */
 public class Coordinate {
@@ -32,7 +32,9 @@ public class Coordinate {
     /** 
      * Sets Y coordinate of point
      */
-    public void setY(int y) { this.y = y; }
+    public void setY(int y) { 
+        this.y = y; 
+    }
 
     /** 
      * Returns Y coordinate of point

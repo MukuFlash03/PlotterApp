@@ -12,6 +12,13 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * Description
+ * 
+ * @author Shrinkhala Kayastha
+ * @author Mukul Mahadik
+ * @version 1.0
+ */
 public class PlotPanel extends JPanel implements Observer {
     
     private PlotComponent component;
@@ -27,6 +34,10 @@ public class PlotPanel extends JPanel implements Observer {
     private List<Integer> scores;
     private double averageLineValue;
 
+    /**
+     * 
+     * @param
+     */
     public PlotPanel(String caption, PlotComponent component) {
         this.component = component;
         this.setBackground(Color.white);
@@ -36,6 +47,10 @@ public class PlotPanel extends JPanel implements Observer {
         add(label);
     }
 
+    /**
+     * 
+     * @param
+     */
     @Override
     public void update(Observable o, Object arg) {
         this.scores = ((DataSource) o).getCoordinates();
@@ -48,7 +63,10 @@ public class PlotPanel extends JPanel implements Observer {
         repaint();
     }
     
-    
+    /**
+     * 
+     * @param
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -56,11 +74,19 @@ public class PlotPanel extends JPanel implements Observer {
         this.component.operation(g, this.coordinates);
     }
 
+    /**
+     * 
+     * @param
+     */
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(PREF_W, PREF_H);
     }
 
+    /**
+     * 
+     * @param
+     */
     private void plotAverageLine(Graphics g) {
         double yScale= ((double) getHeight() - 2 * BORDER_GAP) / MAX_VALUE;
         int y1 = (int) ((MAX_VALUE - this.averageLineValue) * yScale + BORDER_GAP);
@@ -68,11 +94,15 @@ public class PlotPanel extends JPanel implements Observer {
         g.drawLine(0, y1, getWidth(), y1);
     }
 
+    /**
+     * 
+     * @param
+     */
     private void scaleCoordinates() {
         double xScale = ((double) getWidth() - 2 * BORDER_GAP) / (scores.size()-1);
         double yScale = ((double) getHeight() - 2 * BORDER_GAP) / MAX_VALUE;
 
-        this.coordinates = new ArrayList<>();
+        this.coordinates = new ArrayList<Coordinate>();
         for (int i = 0; i < scores.size(); i++) {
             int x1 = (int) (i * xScale + BORDER_GAP);
             int y1 = (int) ((MAX_VALUE - scores.get(i)) * yScale + BORDER_GAP);
