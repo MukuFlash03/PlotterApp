@@ -33,16 +33,9 @@ public class PlotterApp extends JFrame implements ActionListener {
     public PlotterApp() {
         JButton run = new JButton("Generate Plots");
 
-        Point point = new Point();
-        Square square = new Square();
-        Bar bar = new Bar();
-
-        square.setComponent(point);
-        bar.setComponent(square);
-        
-        PlotPanel simplePlot = new PlotPanel("Simple Plot", point);
-        PlotPanel squarePlot = new PlotPanel("Square Plot", square);
-        PlotPanel barPlot = new PlotPanel("Bar Plot", bar);
+        PlotPanel simplePlot = new PlotPanel("Simple Plot");
+        PlotPanel squarePlot = new PlotPanel("Square Plot");
+        PlotPanel barPlot = new PlotPanel("Bar Plot");
 
         this.source = new DataSource();
         source.addObserver(simplePlot);

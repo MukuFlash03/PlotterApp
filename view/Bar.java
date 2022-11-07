@@ -34,9 +34,9 @@ public class Bar extends PlotDecorator {
                 int x1 = coordinates.get(i).getX();
                 int y1 = coordinates.get(i).getY() + GRAPH_POINT_WIDTH - 1;
                 // int x2 = i * (this.width - BORDER_GAP * 2) / (coordinates.size() - 1) + BORDER_GAP;
-                // int y2 =this.height - BORDER_GAP - GRAPH_POINT_WIDTH / 3;
+                // int y2 =this.height;
                 // g2.drawLine(x1, y1, x2, y2);
-                g2.drawLine(x1, y1, x1, 270);
+                g2.drawLine(x1, y1, x1, 250);
             }
         }
     }
