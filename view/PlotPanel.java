@@ -42,10 +42,25 @@ public class PlotPanel extends JPanel implements Observer {
     /**
      * This is the constructor for PlotPanel class.
      * @param caption caption for the GUI component i.e panel
-     * @param component GUI decorator component
      */
-    public PlotPanel(String caption, PlotComponent component) {
-        this.component = component;
+    public PlotPanel(String caption) {
+
+        Point point = new Point();
+        Square square = new Square();
+        Bar bar = new Bar();
+
+        if (caption.equals("Simple Plot"))
+            this.component = point;
+        else if (caption.equals("Square Plot")) {
+            square.setComponent(point);
+            this.component = square;
+        }
+        else if (caption.equals("Bar Plot")) {
+            square.setComponent(point);
+            bar.setComponent(square);
+            this.component = bar;
+        }
+
         this.setBackground(Color.white);
         this.setBorder(new LineBorder(Color.DARK_GRAY, 1, true));
         captionLabel.setText(caption);
