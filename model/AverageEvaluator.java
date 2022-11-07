@@ -1,6 +1,6 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class AverageEvaluator {
     private static AverageEvaluator instance;
@@ -16,16 +16,15 @@ public class AverageEvaluator {
     }    
 
     public double getAverage() {
-        return this.average;
+        return average;
     }
 
-    public void calculate(ArrayList<Coordinate> coordinates) {
+    public void calculate(List<Integer> scores) {
         double sum = 0;
-        for (Coordinate xy : coordinates) {
-            sum += xy.getY();
+        for (Integer i : scores) {
+            sum += i;
         }
-        this.average = sum/coordinates.size();
+        average = sum/scores.size();
     }
-
 
 }

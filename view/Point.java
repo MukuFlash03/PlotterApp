@@ -1,20 +1,37 @@
 package view;
 
-import java.awt.*;
-import java.util.ArrayList;
 import model.Coordinate;
 
+import java.awt.*;
+import java.util.ArrayList;
+
 public class Point implements PlotComponent {
+    private static final Color GRAPH_COLOR = Color.black;
+    private static final Color GRAPH_POINT_COLOR = Color.blue;
+    private static final Stroke GRAPH_STROKE = new BasicStroke(3f);
+    private static final int GRAPH_POINT_WIDTH = 4;
     @Override
     public void operation(Graphics g, ArrayList<Coordinate> coordinates) {
-        System.out.println("Point: operation()");
-
-        g.setColor(Color.BLUE);
         if (coordinates != null) {
-            for(int i = 0; i < coordinates.size()-1; i++) {
-                Coordinate a = coordinates.get(i);
-                Coordinate b = coordinates.get(i+1);
-                g.drawLine((int) a.getX(), (int) a.getY(), (int) b.getX(), (int) b.getY());
+            Graphics2D g2 = (Graphics2D) g;
+
+            Stroke oldStroke = g2.getStroke();
+            g2.setColor(GRAPH_COLOR);
+            g2.setStroke(GRAPH_STROKE);
+            for (int i = 0; i < coordinates.size() - 1; i++) {
+                int x1 = coordinates.get(i).getX();
+                int y1 = coordinates.get(i).getY();
+                int x2 = coordinates.get(i + 1).getX();
+                int y2 = coordinates.get(i + 1).getY();
+                g2.drawLine(x1, y1, x2, y2);
+            }
+
+            g2.setStroke(oldStroke);
+            g2.setColor(GRAPH_POINT_COLOR);
+            for (int i = 0; i < coordinates.size(); i++) {
+                int x = coordinates.get(i).getX() - GRAPH_POINT_WIDTH / 2;
+                int y = coordinates.get(i).getY() - GRAPH_POINT_WIDTH / 2;
+                g2.fillOval(x, y, GRAPH_POINT_WIDTH, GRAPH_POINT_WIDTH);
             }
         }
     }
