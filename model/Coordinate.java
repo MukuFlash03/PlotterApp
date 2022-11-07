@@ -1,48 +1,43 @@
 package model;
 /**
  * This class models a Coordinate class based on inbuilt Point class.
- * Point stores X and Y coordinate values of Integer type.
- * Coordinate class can coordinate values of Double type.
- * This change of datatype was done so that 
- * floating point numbers in input data can be preserved.
+ * It stores X and Y coordinate values of Integer type.
  * 
  * @author Shrinkhala Kayastha
  * @version 1.0
  */
 public class Coordinate {
-    private double x;
-    private double y;
+    private int x;
+    private int y;
 
-    public Coordinate() {
-        this.x = 0.00;
-        this.y = 0.00;
+    public Coordinate(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     /** 
      * Returns X coordinate of point
      */
-    public double getX() {
+    public int getX() {
         return x;
     }
 
     /** 
      * Sets X coordinate of point
      */
-    public void setX(double x) {
+    public void setX(int x) {
         this.x = x;
     }
 
     /** 
      * Sets Y coordinate of point
      */
-    public void setY(double y) {
-        this.y = y;
-    }
+    public void setY(int y) { this.y = y; }
 
     /** 
      * Returns Y coordinate of point
      */
-    public double getY() {
+    public int getY() {
         return y;
     }
 }

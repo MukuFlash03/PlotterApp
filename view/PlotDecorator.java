@@ -1,4 +1,9 @@
 package view;
+
+import java.awt.*;
+import java.util.ArrayList;
+import model.Coordinate;
+
 public abstract class PlotDecorator implements PlotComponent {
     private PlotComponent component;
     
@@ -7,8 +12,8 @@ public abstract class PlotDecorator implements PlotComponent {
     }
 
     @Override
-    public void operation() {
+    public void operation(Graphics g, ArrayList<Coordinate> coordinates) {
         if (component != null)
-            component.operation();
+            component.operation(g, coordinates);
     }
 }

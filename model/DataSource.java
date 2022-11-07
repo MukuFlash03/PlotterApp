@@ -1,89 +1,42 @@
 package model;
 
-import java.util.Observable;
-
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Observable;
 import java.util.concurrent.ThreadLocalRandom;
 
-import view.PlotComponent;
-
 public class DataSource extends Observable {
-    
-    private PlotComponent component;
-    private String data;
-
-    private ArrayList<Coordinate> coordinates;
-    private final int numberCoordinates = 15;
-
-    private int minLimit = 100;
-    private int maxLimit = 500;
+    private List<Integer> scores;
+    private final int numberCoordinates = 30;
+    private final int minLimit = 0;
+    private final int maxLimit = 50;
 
 
-    public String getData() {
-        return data;
+    public List<Integer> getCoordinates() {
+        return this.scores;
     }
 
-    public ArrayList<Coordinate> getCoordinates() {
-        return this.coordinates;
-    }
-
-    public void setData(String data) {
-        this.data = data;
+    public void setCoordinates(List<Integer> scores) {
+        this.scores = scores;
         setChanged();
         notifyObservers();
     }
 
-    public void setData(ArrayList<Coordinate> coordinates) {
-        this.coordinates = coordinates;
-        setChanged();
-        notifyObservers();
+    public int getMaximumValue() {
+        return this.maxLimit;
     }
 
     public void generateCoordinates() {
-        this.coordinates = new ArrayList<Coordinate>();
-        double x,y;
-        int count = 0;
+        scores = new ArrayList<>();
 
         for (int i = 1; i <= numberCoordinates; i++) {
-            count++;
-            // System.out.println(count);
-            
-            x = Math.round(ThreadLocalRandom.current().nextInt(minLimit,maxLimit) * 100) / 100.0;
-            y = Math.round(ThreadLocalRandom.current().nextInt(minLimit,maxLimit) * 100) / 100.0;
-
-            Coordinate xy = new Coordinate();
-            xy.setX(x);
-            xy.setY(y);
-            
-            boolean flag = checkPointExists(xy);
-            if (flag)
-                i--;
-            else
-                this.coordinates.add(xy);
-
-            if (count > numberCoordinates + 5) 
-                break;
+            scores.add(ThreadLocalRandom.current().nextInt(minLimit,maxLimit));
         }
-        this.coordinates = NormalizeCoordinates.scaleCoordinates(this.coordinates);
-        System.out.println("Size = " + this.coordinates.size());
-
-    }
-
-    private boolean checkPointExists(Coordinate xy) {
-        boolean checkX, checkY;
-        for (Coordinate coordinate : this.coordinates) {
-            checkX = coordinate.getX() == xy.getX();
-            checkY = coordinate.getY() == xy.getY();
-            if (checkX && checkY) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public void printPoints() {
-        for (int i = 0; i < this.coordinates.size(); i++)
-            System.out.println("Key = " + (i+1) + ", Value = " + this.coordinates.get(i).getX() + ", " + this.coordinates.get(i).getY());
+        for (int i = 0; i < scores.size(); i++)
+            System.out.print(scores.get(i) + " ");
+        System.out.println();
     }
-
 }
