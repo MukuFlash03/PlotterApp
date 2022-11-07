@@ -13,12 +13,17 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Description
- * 
+ * This class displays the plotted line graph with three different varieties.
+ * It is observer to the DataSource class which updates the GUI whenever new points are generated.
+ * GUI has majorly three components:
+ * 1. Panel showing plotted points and line graph
+ * 2. Panel showing plotted points in square shape and line graph
+ * 3. Panel showing points with bar and line graph
+ *
  * @author Shrinkhala Kayastha
  * @author Mukul Mahadik
  * @version 1.0
- */
+ * */
 public class PlotPanel extends JPanel implements Observer {
     
     private PlotComponent component;
@@ -35,27 +40,12 @@ public class PlotPanel extends JPanel implements Observer {
     private double averageLineValue;
 
     /**
-     * 
-     * @param
+     * This is the constructor for PlotPanel class.
+     * @param caption caption for the GUI component i.e panel
+     * @param component GUI decorator component
      */
-    public PlotPanel(String caption) {
-
-        Point point = new Point();
-        Square square = new Square();
-        Bar bar = new Bar();
-
-        if (caption.equals("Simple Plot"))
-            this.component = point;
-        else if (caption.equals("Square Plot")) {
-            square.setComponent(point);
-            this.component = square;
-        }
-        else if (caption.equals("Bar Plot")) {
-            square.setComponent(point);
-            bar.setComponent(square);
-            this.component = bar;
-        }
-
+    public PlotPanel(String caption, PlotComponent component) {
+        this.component = component;
         this.setBackground(Color.white);
         this.setBorder(new LineBorder(Color.DARK_GRAY, 1, true));
         captionLabel.setText(caption);
@@ -64,8 +54,10 @@ public class PlotPanel extends JPanel implements Observer {
     }
 
     /**
-     * 
-     * @param
+     * This function scales the corodinates of the generated points, computes average
+     * and plots the points and average in the GUI
+     * @param o object of Observable class
+     * @param arg additional object iwth update function
      */
     @Override
     public void update(Observable o, Object arg) {
@@ -78,10 +70,10 @@ public class PlotPanel extends JPanel implements Observer {
         this.averageLineValue = average.getAverage();
         repaint();
     }
-    
+
     /**
-     * 
-     * @param
+     * This function plots the generated points in the GUI.
+     * @param g object for class Graphics
      */
     @Override
     public void paintComponent(Graphics g) {
@@ -91,8 +83,7 @@ public class PlotPanel extends JPanel implements Observer {
     }
 
     /**
-     * 
-     * @param
+     * This function sets the size for the GUI component
      */
     @Override
     public Dimension getPreferredSize() {
@@ -100,8 +91,8 @@ public class PlotPanel extends JPanel implements Observer {
     }
 
     /**
-     * 
-     * @param
+     * This function draws the line for average calculated for the generated points
+     * @param g object for class Graphics
      */
     private void plotAverageLine(Graphics g) {
         double yScale= ((double) getHeight() - 2 * BORDER_GAP) / MAX_VALUE;
@@ -111,8 +102,7 @@ public class PlotPanel extends JPanel implements Observer {
     }
 
     /**
-     * 
-     * @param
+     * This function scales the coordinates for the generated points
      */
     private void scaleCoordinates() {
         double xScale = ((double) getWidth() - 2 * BORDER_GAP) / (scores.size()-1);
