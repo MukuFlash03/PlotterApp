@@ -14,9 +14,6 @@ import java.util.ArrayList;
  * @version 1.0
 * */
 public class Bar extends PlotDecorator {
-    // private static final int BORDER_GAP = 30;
-    // private final int width = 700;
-    // private final int height = 250;
     private static final Stroke GRAPH_BAR_STROKE = new BasicStroke(6f);
     private static final int GRAPH_POINT_WIDTH = 8;
 
@@ -36,9 +33,6 @@ public class Bar extends PlotDecorator {
             for (int i = 0; i < coordinates.size(); i++) {
                 int x1 = coordinates.get(i).getX();
                 int y1 = coordinates.get(i).getY() + GRAPH_POINT_WIDTH - 1;
-                // int x2 = i * (this.width - BORDER_GAP * 2) / (coordinates.size() - 1) + BORDER_GAP;
-                // int y2 =this.height;
-                // g2.drawLine(x1, y1, x2, y2);
                 g2.drawLine(x1, y1, x1, 250);
             }
         }
